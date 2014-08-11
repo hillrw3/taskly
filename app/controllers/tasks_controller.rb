@@ -27,11 +27,10 @@ class TasksController < ApplicationController
         redirect_to '/'
       else
         flash[:notice] = "Your task could not be created"
-        redirect_to(:back)
+        redirect_to :back
       end
     else
-      flash[:notice] = "Date can't be in the past!!"
-      redirect_to :back
+      render :new
     end
   end
 
@@ -50,7 +49,6 @@ class TasksController < ApplicationController
   def search
     @search_term = params[:search]
     @search_results = Task.where("task like ?", "%#{params[:search]}%")
-    p @search_results
   end
 
 end

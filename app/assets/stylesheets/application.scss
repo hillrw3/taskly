@@ -107,6 +107,7 @@ main {
 
 .errors {
   color: red;
+  display: inline-block;
 }
 
 .right_float {
@@ -115,6 +116,10 @@ main {
 
 .field_with_errors input {
   border: 1px solid red;
+}
+
+.field_with_errors {
+  display: inline-block;
 }
 
 .bold {

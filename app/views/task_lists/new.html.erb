@@ -10,6 +10,7 @@
 
 <%= form_for @task do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %><br><br>
+  <%= f.text_field :name %><div class="errors"><%= @task.errors.messages[:name].first if @task.errors.messages[:name].present? %></div>
+  <br><br>
   <%= f.submit %>
 <% end %>
