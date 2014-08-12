@@ -11,27 +11,33 @@
   <section class="task-list">
     <dl>
       <dt>
-      <div id="topbar">
-        <h1><a href='/task_lists/<%= task_list.id %>'><%= task_list.name %></a></h1>
+      <div id="topbar" class="panel">
+        <h1><a href='/task_lists/<%= task_list.id %>'><%= task_list.name %></a>
+          <button id="<%= task_list.id %>" onclick="showPanel(<%= task_list.id %>)">Open</button>
+        </h1>
       </div>
       <div id="topbar" class="right_float"><a href="/tasks/<%= task_list.id %>/new">+ Add Task</a></div>
       <div id="topbar" class="right_float"><a href="/task_lists/<%= task_list.id %>/edit">Edit</a></div>
       </dt>
       <% if task_list.tasks.empty? %>
-        <dd class="centered_text">Nothing here to see!</dd>
+        <div class="tasks" id="<%= task_list.id %>">
+          <dd class="centered_text">Nothing here to see!</dd>
+        </div>
       <% else %>
         <% @tasks.each do |task| %>
-          <dd>
-            <p>
-              <%= task.task if task.task_list_id == task_list.id %>
-              <% if task.task_list_id == task_list.id %>
-                <%= "(#{(task.date - Date.today).to_i} days)" %>
-                <span class=bold><%= " -  #{task.assigned_to} " if task.assigned_to != "Me"  %></span>
-              <% end %>
-            </p>
-          </dd>
+          <div class="tasks" id="<%= task_list.id %>">
+            <dd>
+              <p>
+                <%= task.task if task.task_list_id == task_list.id %>
+                <% if task.task_list_id == task_list.id %>
+                  <%= "(#{(task.date - Date.today).to_i} days)" %>
+                  <span class=bold><%= " -  #{task.assigned_to} " if task.assigned_to != "Me" %></span>
+                <% end %>
+              </p>
+            </dd>
         <% end %>
       <% end %>
+      </div>
     </dl>
 
   </section>
