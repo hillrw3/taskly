@@ -49,8 +49,16 @@ $(document).ready(function () {
   });
 
 
-  $('input[type=submit]').prop('disabled', 'disabled')
+  var inputs = $('.create-form input[type=text]');
+  inputs.addClass('red-border');
+  inputs.each(function(){
+    $(this).keyup(function() {
+      $(this).removeClass('red-border');
+    });
+  });
 
+
+  $('input[type=submit]').prop('disabled', 'disabled');
   $('input:not(:hidden)').keyup(function () {
     if ($(this).val().length != 0) {
       $('input[type=submit]').prop('disabled', false);
@@ -58,8 +66,6 @@ $(document).ready(function () {
       $('input[type=submit]').prop('disabled', 'disabled');
     }
   });
-
-
 
 
 });
