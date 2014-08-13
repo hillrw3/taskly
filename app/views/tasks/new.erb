@@ -1,23 +1,27 @@
 <h2>Add a task</h2>
 
+<div class="create-form">
+  <%= form_for @task do |f| %>
+    <% if flash[:notice] %>
+      <div class="errors"><%= f.label :task, "Description" %></div>
+    <% else %>
+      <%= f.label :task, "Description" %>
+      <br>
+    <% end %>
+    <%= f.text_field :task %>
+    <div class="errors"><%= flash[:notice] if flash[:notice] %></div>
 
-<%= form_for @task do |f| %>
-  <% if flash[:notice] %>
-    <div class="errors"><%= f.label :task, "Description" %></div>
-  <% else %>
-    <%= f.label :task, "Description" %><br>
+    <br><br>
+
+    <input name="datepicker" id='date' class="datepicker" placeholder="Choose a due date"><br><br>
+
+    <%= f.label :assigned_to, "Assigned to" %>
+    <br>
+    <%= f.select :assigned_to, options_for_select(@users) %>
+    <br><br>
+
+    <%= f.submit class: "blue_button" %>
+    <%= f.hidden_field :task_list_id, value: @task_list_id %>
+
   <% end %>
-  <%= f.text_field :task %><div class="errors"><%= flash[:notice] if flash[:notice]%></div>
-
-  <br><br>
-
-  <%= f.label :date, "Due Date" %><br>
-  <%= f.date_select :date %><br><br>
-
-  <%= f.label :assigned_to, "Assigned to" %><br>
-  <%= f.select :assigned_to, options_for_select(@users) %><br><br>
-
-  <%= f.submit class: "blue_button" %>
-  <%= f.hidden_field :task_list_id, value: @task_list_id %>
-<% end %>
-
+</div>

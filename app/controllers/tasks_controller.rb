@@ -16,10 +16,10 @@ class TasksController < ApplicationController
   end
 
   def create
-    date = "#{params[:task]["date(1i)"]}-#{params[:task]["date(2i)"]}-#{params[:task]["date(3i)"]}"
-    if date.to_date >= Date.today
+    @date = params[:datepicker].to_date
+    if @date != nil && @date >= Date.today
       @task = Task.new(task: params[:task][:task],
-                       date: date,
+                       date: params[:datepicker],
                        task_list_id: params[:task][:task_list_id],
                        assigned_to: params[:task][:assigned_to])
       if @task.save

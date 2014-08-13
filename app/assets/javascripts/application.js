@@ -1,5 +1,7 @@
 //= require jquery
 //= require jquery_ujs
+//= require pickadate/picker
+//= require pickadate/picker.date
 //= require_tree .
 
 $(document).ready(function () {
@@ -14,7 +16,6 @@ $(document).ready(function () {
       $('.tasks').each(function () {
         if ($(this).attr('id') == id) {
           $(this).slideDown('slow');
-          var button = $(this).siblings('dt').find('button');
         } else {
           $(this).slideUp('slow');
         }
@@ -34,6 +35,32 @@ $(document).ready(function () {
 //      $(this).text = 'Open';
 //    }
 //  });
+
+  setTimeout("$('.flash').hide();", 5000);
+
+  $('.flash button').on('click', function () {
+    $('.flash').hide();
+  });
+
+
+  $('.datepicker').pickadate({
+    formatSubmit: 'yyyy-mm-dd',
+    min: true
+  });
+
+
+  $('input[type=submit]').prop('disabled', 'disabled')
+
+  $('input:not(:hidden)').keyup(function () {
+    if ($(this).val().length != 0) {
+      $('input[type=submit]').prop('disabled', false);
+    } else {
+      $('input[type=submit]').prop('disabled', 'disabled');
+    }
+  });
+
+
+
 
 });
 

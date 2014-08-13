@@ -8,9 +8,12 @@
   </div>
 <% end %>
 
-<%= form_for @task do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><div class="errors"><%= @task.errors.messages[:name].first if @task.errors.messages[:name].present? %></div>
-  <br><br>
-  <%= f.submit %>
-<% end %>
+<div class="create-form">
+  <%= form_for @task do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <div class="errors"><%= @task.errors.messages[:name].first if @task.errors.messages[:name].present? %></div>
+    <br><br>
+    <%= f.submit class: 'blue_button' %>
+  <% end %>
+</div>

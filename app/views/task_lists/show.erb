@@ -13,7 +13,7 @@
       <li>
         <%= task.task %>
         <%= "(#{(task.date - Date.today).to_i} days)" %>
-        <span class="bold"><%= " -  #{task.assigned_to} " if task.assigned_to != "Me" %></span>
+        <span class="bold"><%= " -  #{task.assigned_to} "%></span>
         <div class="right_float"><%= link_to 'Delete', task_path(id: task.id), method: :delete %></div>
         <div class="right_float"><a href="/tasks/<%= task.id %>/complete">Complete</a></div>
       </li>

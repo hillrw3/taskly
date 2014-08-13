@@ -3,7 +3,7 @@
 <div id="topbar"><a href="/task_lists/assigned_tasks">Assigned Tasks</a></div>
 <br>
 <% if flash[:notice] %>
-  <div class='flash'><%= flash[:notice] %></div>
+  <div class='flash'><%= flash[:notice] %><button>X</button></div>
 <% end %>
 
 <% @task_lists.each do |task_list| %>
@@ -31,7 +31,7 @@
                 <%= task.task if task.task_list_id == task_list.id %>
                 <% if task.task_list_id == task_list.id %>
                   <%= "(#{(task.date - Date.today).to_i} days)" %>
-                  <span class=bold><%= " -  #{task.assigned_to} " if task.assigned_to != "Me" %></span>
+                  <span class=bold><%= " -  #{task.assigned_to} " %></span>
                 <% end %>
               </p>
             </dd>
